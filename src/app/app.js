@@ -1,29 +1,48 @@
 webix.ui({
     rows: [
         { view:"toolbar", elements:[
-        { view:"button", value:"Add",    width:100},
-		{ view:"button", value:"Delete", width:100 },
-		{ view:"button", value:"Clear form", width: 100, click:"$$('myform').clear()"},
-		{ view:"button", value:"Delete all", width: 100}
+        { view:"button", value:"Add",    width:100, click: addElement},
+		{ view:"button", value:"Delete", width:100, click: deleteSingle},
+		{ view:"button", value:"Clear form", width: 100, click:clearForm},
+		{ view:"button", value:"Delete all", width: 100, click:deleteAll}
         ]},
         { 	cols:[
-            // { view:"form", id:"myform", elements:[
-            // { view:"text", placeholder:"Title"},  
-            // { view:"text", placeholder:"Year"}     
-            //     ]},
+            { id:"productForm", view:"form", elements:[
+                { view:"text", name:"id", label: "ID:", placeholder:"888"},  
+                { view:"text", name:"name", label: "Name", placeholder:"Product Title 12"},  
+                { view:"text", name:"sku", label:"SKU", placeholder:"19QWE4VD"},  
+                { view:"text", name:"price", label: "Price:", placeholder:"99"}
+                ]},
             {
-				view:"datatable", 
+                view:"datatable", 
+                id:"data",
 				autoheight:true,
 				autowidth:true,
                 select:true, //enables selection 
 				columns:[
-					{ id:"name",	header:"Name", width: 400},
-					{ id:"id",		header:"Id"},
-					{ id:"sku",		header:"Sku"},
-					{ id:"price",	header:"Price"}
+                    { id:"id",		header:"", width: 50},
+                    { id:"name",	header:"Name", width: 150},
+					{ id:"sku",		header:"Sku", width: 120},
+					{ id:"price",	header:"Price", width: 120}
 				],
 				url:"../../mock/site.json"
             } 
         ]}
     ]
 });
+
+function deleteSingle(){
+    $$("data").remove($$("data").getSelectedId());
+}
+
+function deleteAll(){
+    $$("data").clearAll();
+}
+
+function clearForm() {
+    $$("productForm").clear();
+}
+
+function addElement() {
+    $$("data").add($$("productForm").getValues());
+}
