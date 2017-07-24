@@ -1,3 +1,5 @@
+import { addElement, deleteSingle, clearForm, deleteAll } from './table.controller.js';
+//import table from './table.view.js';
 webix.ui({
     rows: [
         { view:"toolbar", elements:[
@@ -31,18 +33,3 @@ webix.ui({
     ]
 });
 
-function deleteSingle(){
-    $$("data").remove($$("data").getSelectedId());
-}
-
-function deleteAll(){
-    $$("data").clearAll();
-}
-
-function clearForm() {
-    $$("productForm").clear();
-}
-
-function addElement() {
-    $$("data").add($$("productForm").getValues());
-}
