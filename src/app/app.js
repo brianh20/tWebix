@@ -9,18 +9,22 @@ var menu_data = [
 ];
 
 webix.ui({
+    id: "fullView",
     cols:[
         { id:"sidebar", view: "sidebar", data: menu_data, on:{
 								onAfterSelect: function(id){
-									populateContent(id)
+									showView(id);
 								}
                             }
         },
-        product_edit
+        product_edit,
+        product_list
     ]    
 });
 
-function populateContent(id){
-    webix.message(id);
-    //$$("contenedor")
+function showView(id){
+    $$('fullView').getChildViews().forEach(function(view){
+        if (view.name!=='sidebar') view.hide();
+    });
+    $$(id).show();
 }

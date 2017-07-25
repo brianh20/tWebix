@@ -3,5 +3,6 @@ export function cancelChanges() {
 }
 
 export function saveChanges() {
+    console.log($$("data"));
     webix.message('Save');
 }

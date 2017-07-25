@@ -1,6 +1,8 @@
 import { addElement, deleteSingle, clearForm, deleteAll } from './product-list.controller';
 
 export var product_list = { 
+    id:"productList",
+    hidden: true,
     rows: [
             { view:"toolbar", elements:[
             { view:"button", value:"Add",    width:100, click: addElement},

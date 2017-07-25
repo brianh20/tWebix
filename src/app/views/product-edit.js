@@ -2,6 +2,8 @@ import {cancelChanges, saveChanges} from './product-edit.controller';
 
 
 export var product_edit = { 
+    id:"productEdit",
+    hidden: true,
     rows: [
             { 	cols:[
                 { id:"productForm", view:"form", elements:[
