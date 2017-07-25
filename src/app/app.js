@@ -1,7 +1,29 @@
 import { addElement, deleteSingle, clearForm, deleteAll } from './table.controller.js';
 //import table from './table.view.js';
+
+var menu_data = [
+    {id: "dashboard", icon: "dashboard", value: "Dashboards",  data:[
+        { id: "dashboard1", value: "Dashboard 1"},
+        { id: "dashboard2", value: "Dashboard 2"}
+    ]},
+    {id: "layouts", icon: "columns", value:"Layouts", data:[
+        { id: "accordions", value: "Accordions"},
+        { id: "portlets", value: "Portlets"}
+    ]},
+    {id: "tables", icon: "table", value:"Data Tables", data:[
+        { id: "tables1", value: "Datatable"},
+        { id: "tables2", value: "TreeTable"},
+        { id: "tables3", value: "Pivot"}
+    ]}
+];
+
+
+
 webix.ui({
-    rows: [
+    cols:[
+        { view: "sidebar", data: menu_data},
+        {
+            rows: [
         { view:"toolbar", elements:[
         { view:"button", value:"Add",    width:100, click: addElement},
 		{ view:"button", value:"Delete", width:100, click: deleteSingle},
@@ -31,5 +53,7 @@ webix.ui({
             } 
         ]}
     ]
+        }
+    ]    
 });
 
