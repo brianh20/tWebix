@@ -1,4 +1,5 @@
 import { addElement, deleteSingle, clearForm, deleteAll } from './product-list.controller';
+import { showView } from '../app';
 
 export var product_list = { 
     id:"productList",
@@ -8,7 +9,9 @@ export var product_list = {
             { view:"button", value:"Add",    width:100, click: addElement},
             { view:"button", value:"Delete", width:100, click: deleteSingle},
             { view:"button", value:"Clear form", width: 100, click:clearForm},
-            { view:"button", value:"Delete all", width: 100, click:deleteAll}
+            { view:"button", value:"Delete all", width: 100, click:deleteAll},
+            {},
+            { view:"button", value:"Edit", width: 100, hidden:true, id:"editButton", click:editElement}
             ]},
             { 	cols:[
                 { id:"productForm", view:"form", elements:[
@@ -29,7 +32,21 @@ export var product_list = {
                         { id:"sku",		header:"Sku", width: 120},
                         { id:"price",	header:"Price", width: 130}
                     ],
+                    on:{
+                        onAfterSelect: function(data, preserve){
+                                editableSelection(data, preserve);
+                            }
+                        },
                     url:"../../mock/site.json"
                 } 
             ]}
     ]};
+
+    function editableSelection(data, preserve) {
+        $$("editButton").show();
+    }
+
+    function editElement() {
+        $$("editForm").setValues($$("data").getSelectedItem());
+        showView("productEdit");
+    }

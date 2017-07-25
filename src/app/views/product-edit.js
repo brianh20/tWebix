@@ -1,13 +1,12 @@
-import {cancelChanges, saveChanges} from './product-edit.controller';
-
+import { cancelChanges, saveChanges } from './product-edit.controller';
 
 export var product_edit = { 
     id:"productEdit",
     hidden: true,
     rows: [
             { 	cols:[
-                { id:"productForm", view:"form", elements:[
-                    { view:"text", name:"id", label: "ID:"},  
+                { id:"editForm", view:"form", elements:[
+                    { view:"text", name:"id", disabled: true, label: "ID:"},  
                     { view:"text", name:"name", label: "Name"},  
                     { view:"text", name:"sku", label:"SKU"},  
                     { view:"text", name:"price", label: "Price:"}

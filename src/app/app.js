@@ -22,7 +22,7 @@ webix.ui({
     ]    
 });
 
-function showView(id){
+export function showView(id){
     $$('fullView').getChildViews().forEach(function(view){
         if (view.name!=='sidebar') view.hide();
     });

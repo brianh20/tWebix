@@ -1,8 +1,12 @@
+import { showView } from '../app';
+
 export function cancelChanges() {
-    webix.message('Cancel');
+    $$("editForm").clear();
+    showView("productList");
 }
 
 export function saveChanges() {
-    console.log($$("data"));
-    webix.message('Save');
+    $$("data").updateItem($$("editForm").getValues().id, $$("editForm").getValues());
+    $$("data").unselectAll();
+    showView("productList");
 }

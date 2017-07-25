@@ -14,6 +14,7 @@ export function addElement() {
     let element = $$("productForm").getValues();
     if(isNewElement(element)){
         $$("data").add($$("productForm").getValues());
+        clearForm();
     }
 }
 
