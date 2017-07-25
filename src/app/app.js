@@ -1,4 +1,5 @@
 import { product_list } from './views/product-list';
+import { product_edit } from './views/product-edit';
 
 var menu_data = [
     {id: "product", icon: "gift", value: "Products",  data:[
@@ -15,11 +16,11 @@ webix.ui({
 								}
                             }
         },
-        product_list
-        
+        product_edit
     ]    
 });
 
 function populateContent(id){
     webix.message(id);
+    //$$("contenedor")
 }
