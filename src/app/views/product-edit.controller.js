@@ -8,6 +8,8 @@ export function cancelChanges() {
 export function saveChanges() {
     if($$("editForm").getValues().id){
         $$("data").updateItem($$("editForm").getValues().id, $$("editForm").getValues());
+        $$("editForm").clear();
+        $$("editButton").hide();
         $$("data").unselectAll();
     }else{
         webix.message("No row selected");
