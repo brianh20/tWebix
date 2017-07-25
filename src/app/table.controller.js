@@ -19,7 +19,15 @@ export function addElement() {
 
 function isNewElement(element){
     var found = $$("data").find(function(obj){
-        return (obj.id===element.id || obj.id===obj.sku);
+        return (obj.id===element.id || obj.sku===element.sku);
     })
-    if (element.id && element.sku && element.price && element.name && !found.length) return true;
+    if (found.length) {
+        webix.message("Product Id/Sku already exists");
+        return;
+    }
+    if (!(element.id && element.sku && element.price && element.name)) {
+        webix.message("Incomplete data");
+        return;
+    } 
+    return true;
 }
