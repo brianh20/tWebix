@@ -37,10 +37,31 @@ export var product_list = {
                                 editableSelection(data, preserve);
                             }
                         },
-                    url:"../../mock/site.json"
+                    data:productListData
                 } 
             ]}
     ]};
+
+    var productListData = webix.ajax().get("../../mock/site.json").then(function(response){
+        updatePrices(response.json());
+    });
+
+    function updatePrices(data){
+        $$("data").clearAll();
+        var newData = data.slice();
+        newData.forEach(function(element){
+            var goingprice = null;
+            if (typeof element.price === 'object') {
+                if (element.price.special) {
+                    goingprice = element.price.special;
+                } else {
+                    goingprice = element.price.regular;
+                }
+            }
+            element.price = goingprice || element.price;
+            $$("data").add(element);
+        });
+    }
 
     function editableSelection(data, preserve) {
         $$("editButton").show();
