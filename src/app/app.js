@@ -27,4 +27,5 @@ export function showView(id){
         if (view.name!=='sidebar') view.hide();
     });
     $$(id).show();
+    $$("sidebar").select(id);
 }
